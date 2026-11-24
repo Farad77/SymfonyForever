@@ -21,6 +21,33 @@ MMORPG 3D multijoueur dans le navigateur construit sur **Symfony 7.4** (backend 
 
 ## Installation & Lancement
 
+### Avec Docker
+
+Avec Docker Desktop (ou Docker Engine et Docker Compose) démarré :
+
+```bash
+docker compose up --build -d
+```
+
+Ouvrez [http://localhost:8080](http://localhost:8080). Au premier lancement,
+le schéma SQLite et le monde sont initialisés automatiquement. Les données et
+les sessions sont conservées dans le volume Docker `app_data`.
+
+Pour consulter les logs ou arrêter l'application :
+
+```bash
+docker compose logs -f app
+docker compose down
+```
+
+`docker compose down` conserve les données ; `docker compose down -v` les
+supprime. PostgreSQL reste disponible avec le profil optionnel `postgres` pour
+une configuration personnalisée ; l'application Docker utilise SQLite.
+Pour une exposition en production, configurez un `APP_SECRET` propre au
+déploiement au lieu de la valeur par défaut du projet.
+
+### Installation locale
+
 ```bash
 composer install
 npm install
